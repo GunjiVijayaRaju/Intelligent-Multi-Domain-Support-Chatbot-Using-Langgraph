@@ -1,7 +1,16 @@
 from utils import *
+from dotenv import load_dotenv
+import os
+
+# Load variables from .env file into environment
+load_dotenv()
+
+# Access the variables
+embedding_model = os.getenv("MODEL")
+google_api_key = os.getenv("GOOGLE_API_KEY")
 
 
-genai.configure(api_key="AIzaSyBpB-NLQ50R0ftU9B-cNVEPzS0pY96OtMY")
+genai.configure(api_key=google_api_key)
 
 # Initialize FAISS index
 index = faiss.IndexFlatL2(768)  # 768 for Gemini Embedding
@@ -80,7 +89,7 @@ User Issue: {description}
 # --- GET GEMINI EMBEDDING ---
 def get_gemini_embedding(text):
     response = embedding.embed_content(
-        model="models/embedding-001",
+        model="embedding_model",
         content=text,
         task_type="retrieval_document",
     )
