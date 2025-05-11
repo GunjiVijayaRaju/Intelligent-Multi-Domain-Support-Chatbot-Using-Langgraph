@@ -89,7 +89,7 @@ User Issue: {description}
 # --- GET GEMINI EMBEDDING ---
 def get_gemini_embedding(text):
     response = embedding.embed_content(
-        model="embedding_model",
+        model=embedding_model,
         content=text,
         task_type="retrieval_document",
     )
