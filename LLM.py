@@ -1,5 +1,12 @@
 from utils import *
+from dotenv import load_dotenv
+import os
 
-groq_api_key="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"
+# Load variables from .env file into environment
+load_dotenv()
 
-llm=ChatGroq(groq_api_key=groq_api_key,model_name="Llama3-8b-8192")
+# Access the variables
+model_name = os.getenv("MODEL_NAME")
+groq_api_key = os.getenv("GROQ_API_KEY")
+
+llm=ChatGroq(groq_api_key=groq_api_key,model_name=model_name)
